@@ -48,7 +48,7 @@ def get_custom_fields(product_id):
     return session.get("{}/catalog/products/{}/custom-fields".format(STORE_V3_API_URL, product_id)).json()
 
 
-def get_manufacturer(brand_id):
+def get_brand(brand_id):
     set_headers(V3)
     brand = session.get("{}/catalog/brands/{}".format(STORE_V3_API_URL, brand_id)).json()
     return brand.get("data", {}).get("name", "")
