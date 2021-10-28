@@ -2,12 +2,9 @@ import os
 
 import requests
 
-# todo move to environ
-
-
 BC_API_URL = "http://api.bigcommerce.com/stores"
-STORE_V3_API_URL = "{}/{}/v3".format(BC_API_URL, BC_STORE_HASH)
-STORE_V2_API_URL = "{}/{}/v2".format(BC_API_URL, BC_STORE_HASH)
+STORE_V3_API_URL = "{}/{}/v3".format(BC_API_URL, os.environ['BC_STORE_HASH'])
+STORE_V2_API_URL = "{}/{}/v2".format(BC_API_URL, os.environ['BC_STORE_HASH'])
 session = requests.Session()
 V2 = "V2"
 V3 = "V3"
