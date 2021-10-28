@@ -63,6 +63,7 @@ def is_available(product):
 
 
 def get_meta(product):
+    meta = {}
     custom_fields = get_custom_fields(product["id"])
     for cf in custom_fields.get("data", []):
         meta[cf["name"]] = cf["value"]
