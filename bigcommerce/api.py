@@ -1,3 +1,4 @@
+import json
 import os
 
 import requests
@@ -36,11 +37,18 @@ def get_products(include_meta=True, limit=100):
     return products
 
 
-def get_all_orders():
+def get_current_shipping(order_id):
     set_headers(V2)
-    url = "{}/orders".format(STORE_V2_API_URL)
-    orders = session2.get(url).json().get("data", None)
-    return orders
+    url = "{}/orders/{order_id}/shipping_addresses".format(STORE_V2_API_URL, order_id=order_id)
+    return session.get(url).json()[0]
+
+
+def update_shipping(order_id, address_id, address_mapping):
+    set_headers(V2)
+    url = "{}/orders/{order_id}/shipping_addresses/{address_id}".format(
+        STORE_V2_API_URL, order_id=order_id, address_id=address_id)
+    resp = session.put(url, json.dumps(address_mapping))
+    return resp
 
 
 def get_custom_fields(product_id):
