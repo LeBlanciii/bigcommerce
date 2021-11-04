@@ -47,7 +47,7 @@ def update_shipping(order_id, address_id, address_mapping):
     set_headers(V2)
     url = "{}/orders/{order_id}/shipping_addresses/{address_id}".format(
         STORE_V2_API_URL, order_id=order_id, address_id=address_id)
-    resp = session.put(url, json.dumps(address_mapping))
+    resp = session.put(url, data=address_mapping)
     return resp
 
 
