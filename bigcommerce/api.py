@@ -24,10 +24,12 @@ def set_headers(api_version):
             "Content-Type": "application/json"}
 
 
-def get_products(include_meta=True, limit=100):
+def get_products(include_meta=True, is_visible=True, limit=100):
     set_headers(V3)
+    is_visible = str(is_visible).lower()
     products = session.get(
-        "{}/catalog/products?is_visible=true&limit={}".format(STORE_V3_API_URL, limit)).json().get("data", None)
+        "{}/catalog/products?is_visible={}&limit={}".format(
+            STORE_V3_API_URL, is_visible, limit)).json().get("data", None)
 
     if not include_meta:
         return products
@@ -36,6 +38,12 @@ def get_products(include_meta=True, limit=100):
         product.update(get_meta(product))
 
     return products
+
+
+def get_product_variants(product_id):
+    variants = session.get(
+        "{}/catalog/products/{}/variants".format(STORE_V3_API_URL, product_id)).json().get("data", None)
+    return variants
 
 
 def get_current_shipping(order_id):
