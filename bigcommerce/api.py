@@ -41,6 +41,7 @@ def get_products(include_meta=True, is_visible=True, limit=100):
 
 
 def get_product_variants(product_id):
+    set_headers(V3)
     variants = session.get(
         "{}/catalog/products/{}/variants".format(STORE_V3_API_URL, product_id)).json().get("data", None)
     return variants
