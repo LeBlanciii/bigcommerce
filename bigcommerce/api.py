@@ -97,9 +97,9 @@ def get_meta(product):
     return meta
 
 
-def get_orders(min_date_created):
+def get_orders(min_date_created, max_date_created):
     set_headers(V2)
-    url = f"{STORE_V2_API_URL}/orders?min_date_created={min_date_created}"
+    url = f"{STORE_V2_API_URL}/orders?min_date_created={min_date_created}&max_date_created={max_date_created}"
     return session.get(url).json()
 
 
