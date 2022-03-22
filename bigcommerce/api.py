@@ -97,7 +97,7 @@ def get_meta(product):
     return meta
 
 
-def get_orders(min_date_created, max_date_created, limit=500):
+def get_orders(min_date_created, max_date_created, limit=250):
     set_headers(V2)
     url = f"{STORE_V2_API_URL}/orders?min_date_created={min_date_created}&max_date_created={max_date_created}&limit=" \
           f"{limit}"
