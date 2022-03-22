@@ -95,3 +95,15 @@ def get_meta(product):
     for cf in custom_fields.get("data", []):
         meta[cf["name"]] = cf["value"]
     return meta
+
+
+def get_orders(min_date_created):
+    set_headers(V2)
+    url = f"{STORE_V2_API_URL}/orders?min_date_created={min_date_created}"
+    return session.get(url).json()
+
+
+def get_order_products(order_id):
+    set_headers(V2)
+    url = f"{STORE_V2_API_URL}/orders/{order_id}/products"
+    return session.get(url).json()
