@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='bigcommerce',
-    version='0.0.13',
+    version='0.0.14',
     author='John LeBlanc',
     author_email='johnleblanciii@gmail.com',
     description='Bigcommerce Endpoints',
